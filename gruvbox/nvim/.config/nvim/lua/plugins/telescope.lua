@@ -1,9 +1,10 @@
 return {
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.8',
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.8',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
-			'BurntSushi/ripgrep'
+			'BurntSushi/ripgrep',
 		},
 		config = function()
 			local builtin = require("telescope.builtin")

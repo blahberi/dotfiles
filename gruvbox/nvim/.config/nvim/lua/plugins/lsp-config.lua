@@ -35,8 +35,9 @@ return {
 			lspconfig.remark_ls.setup({
 				capabilities = capabilities,
 			})
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {noremap = true})
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 			vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, {})

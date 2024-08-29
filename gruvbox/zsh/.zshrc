@@ -82,6 +82,8 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+ZSH_AUTOSUGGEST_STRATEGY=completion
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
