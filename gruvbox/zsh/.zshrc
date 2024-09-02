@@ -78,11 +78,19 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+#
+
+plugins=(
+    git
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    zsh-vi-mode
+)
 
 source $ZSH/oh-my-zsh.sh
 
 ZSH_AUTOSUGGEST_STRATEGY=completion
+ZVM_VI_EDITOR=nvim
 
 # User configuration
 
@@ -119,11 +127,10 @@ alias clipboard='xclip -selection clipboard'
 
 alias pipes='pipes.sh -c 0 -c 4 -c 12 -c 7 -c 15'
 alias ttyping='tt -t 15 -theme gruvbox-dark'
+alias icat='kitten icat'
 
 eval "$(starship init zsh)"
-source <(fzf --zsh)
 
-function clearall() {
-    clear
-    printf '\e[3J'
+function zvm_after_init() {
+    source <(fzf --zsh)
 }
