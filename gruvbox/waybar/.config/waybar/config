@@ -28,6 +28,9 @@
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"cpu",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "temperature",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"battery",
@@ -75,7 +78,7 @@
 	},
 
 	"pulseaudio": {
-		"format": "{icon} {volume:2}%",
+		"format": "{icon}  {volume:2}%",
 		"format-bluetooth": "{icon}  {volume}%",
 		"format-muted": "MUTE",
 		"format-icons": {
@@ -95,15 +98,15 @@
 	},
 	"cpu": {
 		"interval": 5,
-		"format": "CPU {usage:2}%"
+		"format": "CPU{usage:2}%"
 	},
 	"battery": {
 		"states": {
-			"good": 95,
-			"warning": 30,
-			"critical": 15
+			"good": 70,
+			"warning": 40,
+			"critical": 30
 		},
-		"format": "{icon} {capacity}%",
+		"format": "{icon}  {capacity}%",
 		"format-icons": [
 			"",
 			"",
@@ -112,9 +115,14 @@
 			""
 		]
 	},
+    "temperature": {
+        "critical-threshold": 70,
+        "format": "  {temperatureC}°C ",
+        "tooltip": false
+    },
 	"disk": {
 		"interval": 5,
-		"format": "Disk {percentage_used:2}%",
+		"format": "Disk{percentage_used:2}%",
 		"path": "/"
 	},
 	"tray": {

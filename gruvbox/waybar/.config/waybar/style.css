@@ -25,6 +25,7 @@ window#waybar {
 #pulseaudio,
 #memory,
 #cpu,
+#temperature,
 #battery,
 #disk,
 #tray {
@@ -57,11 +58,17 @@ window#waybar {
 #cpu {
 	color: #b16286;
 }
+
+#temperature {
+    color: #d79921;
+}
+
 #battery {
 	color: #98971a;
 }
+
 #disk {
-	color: #d79921;
+	color: #458588;
 }
 
 #clock,
