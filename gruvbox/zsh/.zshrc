@@ -84,6 +84,7 @@ plugins=(
     git
     zsh-syntax-highlighting
     zsh-autosuggestions
+    zsh-vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -119,8 +120,7 @@ ZVM_VI_EDITOR=nvim
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-bindkey -v
+
 
 alias cbat='bat --color=always'
 alias fzfp='fzf --preview="bat --color=always {}"'
@@ -131,4 +131,7 @@ alias ttyping='tt -t 15 -theme gruvbox-dark'
 alias icat='kitten icat'
 
 eval "$(starship init zsh)"
-source <(fzf --zsh)
+
+function zvm_after_init() {
+    source <(fzf --zsh)
+}
