@@ -12,6 +12,7 @@ return {
 				ensure_installed = {
 					"lua_ls", -- lua
 					"clangd", -- C
+                    "csharp_ls", -- C#
 					"pyright", -- python
 					"remark_ls", -- Markdown
 				},
@@ -29,6 +30,9 @@ return {
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 			})
+            lspconfig.csharp_ls.setup({
+                capabilities = capabilities,
+            })
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
 			})
