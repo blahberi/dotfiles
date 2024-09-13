@@ -13,7 +13,7 @@ set $mod Mod4
 
 exec --no-startup-id picom
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/gruvbox_wallpaper.png
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/gruvbox_wallpaper.png
 bindsym Print exec --no-startup-id flameshot gui
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -47,6 +47,16 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+
+bindsym KP_Up exec --no-startup-id xdotool mousemove_relative -- 0 -10
+bindsym KP_Left exec --no-startup-id xdotool mousemove_relative -- -10 0
+bindsym KP_Down exec --no-startup-id xdotool mousemove_relative -- 0 10
+bindsym KP_Right exec --no-startup-id xdotool mousemove_relative -- 10 0
+bindsym KP_Begin exec --no-startup-id xdotool click 1
+bindsym KP_Prior exec --no-startup-id xdotool click 3
+bindsym KP_Insert exec --no-startup-id xdotool click 2
+bindsym KP_Home exec --no-startup-id xdotool click 4
+bindsym KP_End exec --no-startup-id xdotool click 5
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

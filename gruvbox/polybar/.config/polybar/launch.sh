@@ -7,5 +7,4 @@ if type "xrandr"; then
   done
 else
   polybar top &
-  polybar dummy &
 fi
