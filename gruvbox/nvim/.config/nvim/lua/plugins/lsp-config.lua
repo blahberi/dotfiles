@@ -15,6 +15,7 @@ return {
                     "omnisharp", -- C#
                     "pyright",   -- python
                     "marksman",  -- Markdown
+                    "ltex",      -- LaTeX
                 },
             })
         end,
@@ -38,6 +39,9 @@ return {
                 capabilities = capabilities,
             })
             lspconfig.marksman.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.ltex.setup({
                 capabilities = capabilities,
             })
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

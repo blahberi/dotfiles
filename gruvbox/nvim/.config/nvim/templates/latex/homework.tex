@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{color}
+
+% Geometry settings
+\geometry{
+    a4paper,
+    left=25mm,
+    right=25mm,
+    top=10mm,
+    bottom=25mm
+}
+
+\definecolor{white}{RGB}{0, 0, 0}
+\definecolor{black}{RGB}{255, 255, 255}
+
+% Title Section
+\title{Maman X}
+\author{Eitan Hanson}
+\date{}
+
+% Custom commands
+\newcommand{\nl}[1]{\\[#1\baselineskip]}
+\newcommand{\widebar}[1]{\overline{#1\strut}}
+
+\newcommand{\problem}[1]{\section*{Problem #1}}
+\newcommand{\solution}{\textbf{\large Solution}}
+\newcommand{\subproblem}[1]{\nl{1} \textbf{#1.}\quad}
+
+\newcommand\rectanglebox[1]{%
+  \setlength{\fboxrule}{1pt}% Set the linewidth to 2pt (change this value as needed)
+  \fcolorbox{white}{black}{\hspace{1em}#1\hspace{1em}}%
+}
+
+
+% Document starts here
+\begin{document}
+
+\maketitle
+
+% Problem 1
+\problem{1}
+\solution
+solution
+
+\end{document}

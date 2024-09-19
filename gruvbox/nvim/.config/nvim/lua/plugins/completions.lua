@@ -8,7 +8,12 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 		},
-	},
+        config = function()
+            require("luasnip.loaders.from_vscode").load_standalone({
+                path = "./snippets/latex.json"
+            })
+        end
+    },
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()

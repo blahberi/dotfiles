@@ -1,0 +1,59 @@
+{
+    "footnote Equal": {
+        "prefix": ["ft=", "\\ft="],
+        "body": "\\stackrel{\\footnotemark}{=}$1"
+    },
+    "Absolute Value": {
+        "prefix": ["abs", "\\abs"],
+        "body": "\\left|$1\\right|"
+    },
+    "Probability": {
+        "prefix": ["prob", "\\prob"],
+        "body": "P\\left\\{$1\\right\\\\}"
+    },
+    "Expected Value": {
+        "prefix": ["expect", "\\expect"],
+        "body": "E\\left[$1\\right]"
+    },
+    "Variance": {
+        "prefix": ["variance", "\\variance"],
+        "body": "Var\\left($1\\right)"
+    },
+    "Large Sequence Limit": {
+        "prefix": ["slimlarge", "\\slimlarge"],
+        "body": "\\displaystyle\\lim_{${1:n} \\to \\infty}} ${2:a_n}"
+    },
+    "Inline Sequence Limit": {
+        "prefix": ["sliminline", "\\sliminline"],
+        "body": "\\lim_{${1:n} \\to \\infty} ${2:a_n}"
+    },
+    "Large Function Limit": {
+        "prefix": ["flimlarge", "\\flimlarge"],
+        "body": "\\displaystyle\\lim_{${1:x} \\to ${2:a}} ${3:f(x)}"
+    },
+    "Inline Function Limit": {
+        "prefix": ["fliminline", "\\fliminline"],
+        "body": "\\lim_{${1:x} \\to ${2:a}} ${3:f(x)}"
+    },
+    "Equation Text": {
+        "prefix": ["equationtext", "\\equationtext"],
+        "body": ["\\begin{equation*}", "\t$1", "\\end{equation*}$0"],
+        "description": "Create an equation environment when the context is in the text environment"
+    },
+    "Split Equation": {
+        "prefix": ["splequ", "\\splequ"],
+        "body": ["\\begin{equation}", "\\begin{split}", "\t$0", "\\end{split}", "\\label{eq:$1}", "\\end{equation*}"],
+        "description": "Create a split equation environment"
+    },
+    "Split Equation Text": {
+        "prefix": ["splequtext", "\\splequtext"],
+        "body": ["\\begin{equation*}", "\\begin{split}", "\t$1", "\\end{split}", "\\end{equation*}$0"],
+        "description": "Create a split equation environment when the context is in the text environment"
+    },
+    "Gather Text": {
+        "prefix": ["gathertext", "\\gathertext"],
+        "body": ["\\begin{gather*}", "\t$1", "\\end{gather*}$0"],
+        "description": "Create a gather environment when the context is in the text environment"
+    }
+}
+
