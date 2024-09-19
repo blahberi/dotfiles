@@ -15,6 +15,7 @@ return {
                     "csharp_ls", -- C#
 					"pyright", -- python
 					"remark_ls", -- Markdown
+                    "ltex" -- LaTeX
 				},
 			})
 		end,
@@ -39,6 +40,9 @@ return {
 			lspconfig.remark_ls.setup({
 				capabilities = capabilities,
 			})
+            lspconfig.ltex.setup({
+                capabilities = capabilities,
+            })
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {noremap = true})
@@ -46,9 +50,9 @@ return {
 			vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {})
-			vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, {})
-			vim.keymap.set("n", "<F3>", vim.lsp.buf.format, {})
-			vim.keymap.set("n", "<F4>", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
+			vim.keymap.set("n", "<leader>vf", vim.lsp.buf.format, {})
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 		end,
 	},
 }

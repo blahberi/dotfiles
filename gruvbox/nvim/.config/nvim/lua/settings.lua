@@ -11,7 +11,7 @@ vim.o.incsearch = true
 
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>rn", ":set relativenumber!<CR>",
+vim.keymap.set("n", "<leader>rln", ":set relativenumber!<CR>",
     { noremap = true, silent = true }
 )
 
