@@ -1,27 +1,37 @@
 {
-    "footnote Equal": {
-        "prefix": ["ft=", "\\ft="],
-        "body": "\\stackrel{\\footnotemark}{=}$1"
-    },
-    "Absolute Value": {
-        "prefix": ["abs", "\\abs"],
-        "body": "\\left|$1\\right|"
-    },
-    "Probability": {
-        "prefix": ["prob", "\\prob"],
-        "body": "P\\left\\{$1\\right\\\\}"
-    },
-    "Expected Value": {
-        "prefix": ["expect", "\\expect"],
-        "body": "E\\left[$1\\right]"
-    },
-    "Variance": {
-        "prefix": ["variance", "\\variance"],
-        "body": "Var\\left($1\\right)"
-    },
-    "Large Sequence Limit": {
-        "prefix": ["slimlarge", "\\slimlarge"],
-        "body": "\\displaystyle\\lim_{${1:n} \\to \\infty}} ${2:a_n}"
+    "scope":  "latex",
+    "snippets": {
+        "Choose": {
+            "prefix": ["choose", "\\choose"],
+            "body": "\\binom{$1\\}{$2\\}"
+        },
+        "footnote Equal": {
+            "prefix": ["ft=", "\\ft="],
+            "body": "\\stackrel{\\footnotemark}{=}$1"
+        },
+        "Absolute Value": {
+            "prefix": ["abs", "\\abs"],
+            "body": "\\left|$1\\right|"
+        },
+        "Probability": {
+            "prefix": ["prob", "\\prob"],
+            "body": "P\\left\\{$1\\right\\\\}"
+        },
+        "Expected Value": {
+            "prefix": ["expect", "\\expect"],
+            "body": "E\\left[$1\\right]"
+        },
+        "Variance": {
+            "prefix": ["variance", "\\variance"],
+            "body": "Var\\left($1\\right)"
+        },
+        "Covariance": {
+            "prefix": ["covariance", "\\covariance"],
+            "body": "Cov\\left($1, $2\\right)"
+        },
+        "Large Sequence Limit": {
+            "prefix": ["slimlarge", "\\slimlarge"],
+            "body": "\\displaystyle\\lim_{${1:n} \\to \\infty}} ${2:a_n}"
     },
     "Inline Sequence Limit": {
         "prefix": ["sliminline", "\\sliminline"],

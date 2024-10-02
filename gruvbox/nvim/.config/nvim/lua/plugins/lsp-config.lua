@@ -15,7 +15,8 @@ return {
                     "csharp_ls", -- C#
 					"pyright", -- python
 					"remark_ls", -- Markdown
-                    "ltex" -- LaTeX
+                    "ltex", -- LaTeX
+                    "cmake" -- CMake
 				},
 			})
 		end,
@@ -41,6 +42,9 @@ return {
 				capabilities = capabilities,
 			})
             lspconfig.ltex.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.cmake.setup({
                 capabilities = capabilities,
             })
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
