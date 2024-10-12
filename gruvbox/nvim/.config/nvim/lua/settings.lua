@@ -11,9 +11,15 @@ vim.o.cole = 2
 vim.o.hlsearch = false
 vim.o.incsearch = true
 
+vim.g.netrw_bufsettings = 'nu rnu ro'
+
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>rln", ":set relativenumber!<CR>",
+    { noremap = true, silent = true }
+)
+
+vim.keymap.set("n", "<leader>w", ":set wrap!<CR>",
     { noremap = true, silent = true }
 )
 
