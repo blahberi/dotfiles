@@ -16,6 +16,7 @@ return {
                     "pyright",   -- python
                     "marksman",  -- Markdown
                     "ltex",      -- LaTeX
+                    "zls",       -- Zig
                 },
             })
         end,
@@ -45,6 +46,9 @@ return {
                 capabilities = capabilities,
             })
             lspconfig.cmake.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.zls.setup({
                 capabilities = capabilities,
             })
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

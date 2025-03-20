@@ -121,6 +121,8 @@ ZVM_VI_EDITOR=nvim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias vim='nvim'
+
 alias cbat='bat --color=always'
 alias fzfp='fzf --preview="bat --color=always {}"'
 alias clipboard='xclip -selection clipboard'
@@ -130,6 +132,7 @@ alias ttyping='tt -t 15 -theme gruvbox-dark'
 alias icat='kitten icat'
 
 alias ls='eza'
+
 
 eval "$(starship init zsh)"
 
