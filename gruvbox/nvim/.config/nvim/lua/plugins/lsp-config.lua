@@ -8,6 +8,9 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         config = function()
+            if vim.g.vscode then
+                return
+            end
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",    -- lua
@@ -16,6 +19,7 @@ return {
                     "pyright",   -- python
                     "marksman",  -- Markdown
                     "ltex",      -- LaTeX
+                    "gopls",     -- Go
                 },
             })
         end,
@@ -23,8 +27,24 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { noremap = true })
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
+            vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
+            vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+            vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {})
+            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
+            vim.keymap.set("n", "<leader>vf", vim.lsp.buf.format, {})
+            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+
+            if vim.g.vscode then
+                return
+            end
+
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lspconfig = require("lspconfig")
+            local util = require("lspconfig/util")
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
             })
@@ -47,16 +67,12 @@ return {
             lspconfig.cmake.setup({
                 capabilities = capabilities,
             })
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { noremap = true })
-            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-            vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
-            vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
-            vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {})
-            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-            vim.keymap.set("n", "<leader>vf", vim.lsp.buf.format, {})
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+            lspconfig.gopls.setup({
+                capabilities = capabilities,
+                cmd = {"gopls"},
+                filetypes = {"go", "gomod", "gowork", "gotmpl" },
+                root_dir = util.root_pattern("go.work", "go.mod", ".git")
+            })
         end,
     },
 }
