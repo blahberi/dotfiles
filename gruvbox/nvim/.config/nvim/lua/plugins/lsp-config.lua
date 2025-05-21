@@ -21,6 +21,7 @@ return {
                     "ltex",      -- LaTeX
                     "gopls",     -- Go
                 },
+                automatic_enable = false,
             })
         end,
     },
