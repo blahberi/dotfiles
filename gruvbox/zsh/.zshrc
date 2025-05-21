@@ -125,7 +125,9 @@ alias ls='eza'
 alias checkout='git checkout $(git branch -a | fzf --ansi)'
 
 alias glg='git log --oneline'
-alias wip='git commit -m "WIP"'
+alias glf="git log --oneline --color=always | fzf --ansi | awk '{print \$1}' | tr -d '\n' | pbcopy"
+
+alias wip='git add .; git commit -m "WIP"'
 
 eval "$(starship init zsh)"
 
