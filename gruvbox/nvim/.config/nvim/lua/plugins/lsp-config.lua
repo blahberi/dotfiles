@@ -1,3 +1,24 @@
+local function get_servers()
+    require("lspconfig")
+    local util = require("lspconfig.util")
+    return {
+        lua_ls = {},
+        clangd = {},
+        pyright = {},
+        marksman = {},
+        ltex = {},
+        cmake = {},
+        gopls = {
+            cmd = { "gopls" },
+            filetypes = { "go", "gomod", "gowork", "gotmpl" },
+            root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+        },
+        omnisharp = {
+            cmd = { "dotnet", "/home/blahberi/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" }, 
+        }
+    }
+end
+
 return {
     {
         "williamboman/mason.nvim",
@@ -12,32 +33,27 @@ return {
                 return
             end
             require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "lua_ls",    -- lua
-                    "clangd",    -- C
-                    "omnisharp", -- C#
-                    "pyright",   -- python
-                    "marksman",  -- Markdown
-                    "ltex",      -- LaTeX
-                    "gopls",     -- Go
-                },
-                automatic_enable = false,
+                ensure_installed = vim.tbl_keys(get_servers()),
+                automatic_insallation = false,
             })
         end,
     },
     {
         "neovim/nvim-lspconfig",
         config = function()
+            local builtin = require("telescope.builtin")
+
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { noremap = true })
+            vim.keymap.set("n", "gi", builtin.lsp_implementations, { noremap = true })
+            vim.keymap.set("n", "grr", builtin.lsp_references, { noremap = true, silent = true })
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
             vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
-            vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
             vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {})
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
             vim.keymap.set("n", "<leader>vf", vim.lsp.buf.format, {})
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+            vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, {})
 
             if vim.g.vscode then
                 return
@@ -45,35 +61,12 @@ return {
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lspconfig = require("lspconfig")
-            local util = require("lspconfig/util")
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.clangd.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.omnisharp.setup({
-                cmd = { "dotnet", "/home/blahberi/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
-                capabilities = capabilities
-            })
-            lspconfig.pyright.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.marksman.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.ltex.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.cmake.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.gopls.setup({
-                capabilities = capabilities,
-                cmd = {"gopls"},
-                filetypes = {"go", "gomod", "gowork", "gotmpl" },
-                root_dir = util.root_pattern("go.work", "go.mod", ".git")
-            })
+
+            local servers = get_servers()
+            for server, config in pairs(servers) do
+                config.capabilities = capabilities
+                lspconfig[server].setup(config)
+            end
         end,
     },
 }

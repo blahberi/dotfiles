@@ -124,14 +124,17 @@ alias ls='eza'
 
 alias glg='git log --oneline'
 alias glf="git log --oneline --color=always | fzf --ansi | awk '{print \$1}' | tr -d '\n' | pbcopy"
-alias fuck="git reflog --pretty=short --date=iso"
+alias fuck="git reflog --pretty"
 
 alias wip='git add .; git commit -m "WIP"'
+alias done='git add .; git commit -m $(git branch --show-current); git push'
+alias comments='git add .; git commit -m "fixed comments"; git push'
+alias shitshow='cd ~/Projects/wonderful/; codex'
 
 eval "$(starship init zsh)"
 
 function zvm_after_init() {
-    source <(fzf --zsh)
+  source <(fzf --zsh)
 }
 
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
@@ -172,25 +175,3 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 export PATH="$PATH:$HOME/go/bin"
-
-git() {
-    local random_hash=""
-    if command git rev-parse --git-dir >/dev/null 2>&1; then
-        local hashes=($(command git rev-list --all))
-        if [ ${#hashes[@]} -gt 0 ]; then
-            random_index=$((RANDOM % ${#hashes[@]}))
-            random_hash=${hashes[$random_index]}
-        fi
-    fi
-
-    local newargs=()
-    for arg in "$@"; do
-        if [[ -n $random_hash && $arg =~ ^[0-9a-f]{7,40}$ ]]; then
-            newargs+=("$random_hash")
-        else
-            newargs+=("$arg")
-        fi
-    done
-
-    command git "${newargs[@]}"
-}
