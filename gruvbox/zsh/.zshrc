@@ -127,9 +127,9 @@ alias glf="git log --oneline --color=always | fzf --ansi | awk '{print \$1}' | t
 alias fuck="git reflog --pretty"
 
 alias wip='git add .; git commit -m "WIP"'
-alias done='git add .; git commit -m $(git branch --show-current); git push'
+alias finish='git add .; git commit -m $(git branch --show-current); git push'
 alias comments='git add .; git commit -m "fixed comments"; git push'
-alias shitshow='cd ~/Projects/wonderful/; codex'
+alias shitshow='cd ~/Projects/vibing/; codex'
 
 eval "$(starship init zsh)"
 
