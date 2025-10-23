@@ -13,13 +13,14 @@ local function get_servers()
             filetypes = { "go", "gomod", "gowork", "gotmpl" },
             root_dir = util.root_pattern("go.work", "go.mod", ".git"),
         },
-        omnisharp = {
-            cmd = { "dotnet", "/home/blahberi/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" }, 
-        }
+        omnisharp = {},
     }
 end
 
 return {
+    {
+        "Hoffs/omnisharp-extended-lsp.nvim",
+    },
     {
         "williamboman/mason.nvim",
         config = function()
@@ -32,9 +33,19 @@ return {
             if vim.g.vscode then
                 return
             end
+
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
             require("mason-lspconfig").setup({
                 ensure_installed = vim.tbl_keys(get_servers()),
                 automatic_insallation = false,
+                handlers = {
+                    function(server_name)
+                        local config = get_servers()[server_name] or {}
+                        config.capabilities = capabilities
+                        require("lspconfig")[server_name].setup(config)
+                    end,
+                },
             })
         end,
     },
@@ -43,10 +54,16 @@ return {
         config = function()
             local builtin = require("telescope.builtin")
 
+            -- Delete default gr* mappings to avoid timeoutlen delay
+            vim.keymap.del("n", "grr")
+            vim.keymap.del("n", "grn")
+            vim.keymap.del("n", "gra")
+            vim.keymap.del("n", "gri")
+
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
             vim.keymap.set("n", "gi", builtin.lsp_implementations, { noremap = true })
-            vim.keymap.set("n", "grr", builtin.lsp_references, { noremap = true, silent = true })
+            vim.keymap.set("n", "gr", builtin.lsp_references, { noremap = true, silent = true })
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
             vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
             vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {})
@@ -55,18 +72,18 @@ return {
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
             vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, {})
 
-            if vim.g.vscode then
-                return
-            end
+            -- Override navigation for C# files to use omnisharp-extended (supports decompilation)
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "cs",
+                callback = function()
+                    local omnisharp_extended = require("omnisharp_extended")
 
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
-
-            local servers = get_servers()
-            for server, config in pairs(servers) do
-                config.capabilities = capabilities
-                lspconfig[server].setup(config)
-            end
+                    vim.keymap.set("n", "gd", omnisharp_extended.lsp_definition, { buffer = true, noremap = true, silent = true })
+                    vim.keymap.set("n", "go", omnisharp_extended.lsp_type_definition, { buffer = true, noremap = true, silent = true })
+                    vim.keymap.set("n", "gi", omnisharp_extended.telescope_lsp_implementation, { buffer = true, noremap = true, silent = true })
+                    vim.keymap.set("n", "gr", omnisharp_extended.telescope_lsp_references, { buffer = true, noremap = true, silent = true })
+                end,
+            })
         end,
     },
 }
