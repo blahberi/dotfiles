@@ -29,8 +29,11 @@ return {
             filesystem = {
                 filtered_items = {
                     hide_dotfiles = false,
-                },
-                hijack_netrw_behavior = "open_current"
+                    hide_gitignored = false,  -- Show gitignored files
+                    never_show = {
+                        "node_modules"
+                    }
+                }
             }
         }
     end

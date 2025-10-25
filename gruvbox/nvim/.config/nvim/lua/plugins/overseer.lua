@@ -4,7 +4,7 @@ return {
     config = function()
         require("overseer").setup({
             dap = true,  -- Enable DAP integration
-            templates = { "builtin", "user", "project" },
+            templates = { "builtin", "project" },
             task_list = {
                 direction = "bottom",
                 min_height = 25,
