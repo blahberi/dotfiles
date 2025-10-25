@@ -1,0 +1,45 @@
+// Zellij configuration for seamless Neovim integration
+
+// Plugin configuration
+plugins {
+    autolock location="file:~/.config/zellij/plugins/zellij-autolock.wasm" {
+        is_enabled true
+        triggers "nvim|vim|v|nv"
+        reaction_seconds "0.3"
+        print_to_log true
+    }
+}
+
+load_plugins {
+    autolock
+}
+
+// Keybindings
+keybinds {
+    // These keybindings work in all modes except locked mode
+    shared_except "locked" {
+        // Seamless navigation with Ctrl+h/j/k/l
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
+    }
+
+    // Normal mode bindings
+    normal {
+        // Trigger autolock assessment on Enter
+        bind "Enter" {
+            WriteChars "\u{000D}";
+            MessagePlugin "autolock" {};
+        }
+    }
+}
+
+// Theme - Gruvbox
+theme "gruvbox-dark"
+
+// General settings
+default_shell "zsh"
+pane_frames false
+simplified_ui true
+default_layout "compact"

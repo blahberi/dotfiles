@@ -1,45 +1,13 @@
 return {
-    'axkirillov/hbac.nvim',
+    'chrisgrieser/nvim-early-retirement',
     config = function()
-        -- These actions refresh the picker and the pin states/icons of the open buffers
-        -- Use these instead of e.g. `hbac.pin_all()`
-        local actions = require("hbac.telescope.actions")
-        local telescope = require("telescope")
-
-        require("hbac").setup({
-            autoclose     = true, -- set autoclose to false if you want to close manually
-            threshold     = 10, -- hbac will start closing unedited buffers once that number is reached
-            close_command = function(bufnr)
-                vim.api.nvim_buf_delete(bufnr, {})
-            end,
-            close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
-            telescope = {
-                telescope = {
-                    sort_mru = true,
-                    sort_lastused = true,
-                    selection_strategy = "row",
-                    use_default_mappings = true,  -- false to not include the mappings below
-                    mappings = {
-                        i = {
-                            ["<M-c>"] = actions.close_unpinned,
-                            ["<M-x>"] = actions.delete_buffer,
-                            ["<M-a>"] = actions.pin_all,
-                            ["<M-u>"] = actions.unpin_all,
-                            ["<M-y>"] = actions.toggle_pin,
-                        },
-                        n = {
-                        },
-                    },
-                    -- Pinned/unpinned icons and their hl groups. Defaults to nerdfont icons
-                    pin_icons = {
-                        pinned = { "󰐃 ", hl = "DiagnosticOk" },
-                        unpinned = { "󰤱 ", hl = "DiagnosticError" },
-                    },
-                }
-            },
+        require("early-retirement").setup({
+            retirementAgeMins = 20, -- Close buffers after 20 minutes of inactivity
+            ignoreUnsavedChangesBufs = true, -- Never close buffers with unsaved changes
+            minimumBufferNum = 2, -- Keep at least 2 buffers open
+            ignoreAltFile = true, -- Don't close alternate file (the # file)
+            ignoreVisibleBufs = true, -- Don't close visible buffers
+            notificationOnAutoClose = false, -- Set to true if you want notifications
         })
-        telescope.load_extension("hbac")
-        local buffers = telescope.extensions.hbac.buffers
-        vim.keymap.set("n", "<leader>vb", buffers, {})
     end
 }

@@ -35,3 +35,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
+
+-- Zellij integration: unlock Zellij when exiting Neovim
+vim.api.nvim_create_autocmd("VimLeave", {
+    pattern = "*",
+    command = "silent !zellij action switch-mode normal"
+})

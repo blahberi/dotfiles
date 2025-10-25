@@ -62,8 +62,18 @@ return {
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-            vim.keymap.set("n", "gi", builtin.lsp_implementations, { noremap = true })
-            vim.keymap.set("n", "gr", builtin.lsp_references, { noremap = true, silent = true })
+            vim.keymap.set("n", "gi", function()
+                builtin.lsp_implementations({
+                    fname_width = 100,
+                    trim_text = true,
+                })
+            end, { noremap = true })
+            vim.keymap.set("n", "gr", function()
+                builtin.lsp_references({
+                    fname_width = 100,
+                    trim_text = true,
+                })
+            end, { noremap = true, silent = true })
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
             vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
             vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {})
@@ -80,8 +90,18 @@ return {
 
                     vim.keymap.set("n", "gd", omnisharp_extended.lsp_definition, { buffer = true, noremap = true, silent = true })
                     vim.keymap.set("n", "go", omnisharp_extended.lsp_type_definition, { buffer = true, noremap = true, silent = true })
-                    vim.keymap.set("n", "gi", omnisharp_extended.telescope_lsp_implementation, { buffer = true, noremap = true, silent = true })
-                    vim.keymap.set("n", "gr", omnisharp_extended.telescope_lsp_references, { buffer = true, noremap = true, silent = true })
+                    vim.keymap.set("n", "gi", function()
+                        builtin.lsp_implementations({
+                            fname_width = 100,
+                            trim_text = true,
+                        })
+                    end, { buffer = true, noremap = true, silent = true })
+                    vim.keymap.set("n", "gr", function()
+                        builtin.lsp_references({
+                            fname_width = 100,
+                            trim_text = true,
+                        })
+                    end, { buffer = true, noremap = true, silent = true })
                 end,
             })
         end,
