@@ -5,9 +5,9 @@
 # Auto-start zellij
 if [[ -z "$ZELLIJ" ]]; then
     if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
-        zellij attach -c
+        exec zellij attach -c
     else
-        zellij
+        exec zellij
     fi
 
     if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
