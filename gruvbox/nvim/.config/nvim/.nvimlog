@@ -1,0 +1,3 @@
+WRN 2025-10-25T18:38:19.560 ?.74931    server_start:193: Failed to start server: operation not permitted: /var/folders/73/78m0ywr523d94d8g4dnrlbdr0000gn/T/nvim.eitanhanson/3I6EDZ/nvim.74931.0
+WRN 2025-10-25T18:51:29.781 ?.90225    server_start:193: Failed to start server: operation not permitted: /var/folders/73/78m0ywr523d94d8g4dnrlbdr0000gn/T/nvim.eitanhanson/FhsqZG/nvim.90225.0
+WRN 2025-10-25T18:56:16.799 ?.95011    server_start:193: Failed to start server: operation not permitted: /var/folders/73/78m0ywr523d94d8g4dnrlbdr0000gn/T/nvim.eitanhanson/u73jM4/nvim.95011.0
