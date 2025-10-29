@@ -124,6 +124,14 @@ keybinds clear-defaults=true {
         bind "Ctrl j" { MoveFocus "down"; SwitchToMode "normal"; }
         bind "Ctrl k" { MoveFocus "up"; SwitchToMode "normal"; }
         bind "Ctrl l" { MoveFocus "right"; SwitchToMode "normal"; }
+        // Alt+hjkl to actually move panes
+        bind "Alt h" { MovePane "left"; }
+        bind "Alt j" { MovePane "down"; }
+        bind "Alt k" { MovePane "up"; }
+        bind "Alt l" { MovePane "right"; }
+        // Alt+io to move tabs left/right
+        bind "Alt i" { MoveTab "left"; }
+        bind "Alt o" { MoveTab "right"; }
     }
     scroll {
         bind "e" { EditScrollback; SwitchToMode "normal"; }
@@ -284,7 +292,7 @@ keybinds clear-defaults=true {
 // changing these requires a restart to take effect
 plugins {
     about location="zellij:about"
-    autolock location="file:/home/blahberi/.config/zellij/plugins/zellij-autolock.wasm" {
+    autolock location="file:/Users/eitanhanson/.config/zellij/plugins/zellij-autolock.wasm" {
         is_enabled true
         print_to_log true
         reaction_seconds "0.3"

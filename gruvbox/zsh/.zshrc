@@ -2,17 +2,13 @@
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 # Path to your Oh My Zsh installation.
 
-# Auto-start zellij
-if [[ -z "$ZELLIJ" ]]; then
-    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
-        exec zellij attach -c
-    else
-        exec zellij
-    fi
 
-    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
-        exit
-    fi
+# Only autostart Zellij when: interactive + real TTY + not already in zellij + not VS Code/Cursor
+if [[ $- == *i* ]] && [[ -t 0 && -t 1 ]] && [[ -z "$ZELLIJ" ]] \
+   && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$VSCODE_INJECTION" ]]; then
+  if command -v zellij >/dev/null 2>&1; then
+    exec zellij
+  fi
 fi
 
 neofetch
