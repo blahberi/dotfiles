@@ -4,11 +4,11 @@
 
 
 # Only autostart Zellij when: interactive + real TTY + not already in zellij + not VS Code/Cursor
-if [[ $- == *i* ]] && [[ -t 0 && -t 1 ]] && [[ -z "$ZELLIJ" ]] \
-   && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$VSCODE_INJECTION" ]]; then
-  if command -v zellij >/dev/null 2>&1; then
-    exec zellij
-  fi
+if [[ $- == *i* ]] && [[ -t 0 && -t 1 ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$VSCODE_INJECTION" ]]; then
+    if [[ -z "$ZELLIJ" ]]; then
+        zellij attach -c "main"
+        exit
+    fi
 fi
 
 neofetch
@@ -139,15 +139,13 @@ alias fuck="git reflog --pretty"
 alias wip='git add .; git commit -m "WIP"'
 alias finish='git add .; git commit -m $(git branch --show-current); git push'
 alias comments='git add .; git commit -m "fixed comments"; git push'
-alias shitshow='cd ~/Projects/vibing/; codex'
+alias vibe='claude --dangerously-skip-permissions'
 
 eval "$(starship init zsh)"
 
 function zvm_after_init() {
   source <(fzf --zsh)
 }
-
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 export FZF_DEFAULT_OPTS="
   --color=fg:#ebdbb2,bg:#282828,hl:#458588
@@ -184,4 +182,7 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-export PATH="$PATH:$HOME/go/bin"
+export PGHOST="localhost"
+export PGPORT="5432"
+export PGDATABASE="wonderful"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"

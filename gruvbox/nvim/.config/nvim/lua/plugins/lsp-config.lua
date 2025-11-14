@@ -55,11 +55,11 @@ return {
             local builtin = require("telescope.builtin")
 
             -- Delete default gr* mappings to avoid timeoutlen delay
-            vim.keymap.del("n", "grr")
-            vim.keymap.del("n", "grn")
-            vim.keymap.del("n", "gra")
-            vim.keymap.del("n", "gri")
-            vim.keymap.del("n", "grt")
+            pcall(vim.keymap.del, "n", "grr")
+            pcall(vim.keymap.del, "n", "grn")
+            pcall(vim.keymap.del, "n", "gra")
+            pcall(vim.keymap.del, "n", "gri")
+            pcall(vim.keymap.del, "n", "grt")
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

@@ -1,0 +1,75 @@
+# Ghostty Configuration
+# Converted from kitty configuration
+
+# Font Configuration
+font-family = MesloLGM Nerd Font
+font-size = 18
+
+# Cursor Configuration
+cursor-style = bar
+cursor-color = #928374
+
+# Window Configuration
+background-opacity = 0.95
+macos-option-as-alt = true
+
+# Gruvbox Color Scheme
+background = #282828
+foreground = #ebdbb2
+
+# Selection colors
+selection-background = #ebdbb2
+selection-foreground = #928374
+
+# Cursor text color (text under cursor)
+cursor-text = cell-background
+
+# URL color
+# Note: ghostty may handle URLs differently
+
+# Terminal colors
+# Black
+palette = 0=#665c54
+palette = 8=#7c6f64
+
+# Red
+palette = 1=#cc241d
+palette = 9=#fb4934
+
+# Green
+palette = 2=#98971a
+palette = 10=#b8bb26
+
+# Yellow
+palette = 3=#d79921
+palette = 11=#fabd2f
+
+# Blue
+palette = 4=#458588
+palette = 12=#83a598
+
+# Purple
+palette = 5=#b16286
+palette = 13=#d3869b
+
+# Aqua
+palette = 6=#689d6a
+palette = 14=#8ec07c
+
+# White
+palette = 7=#a89984
+palette = 15=#bdae93
+
+# Keybindings
+# Note: Ghostty uses different keybind syntax than kitty
+# ctrl+shift+enter: new window with cwd
+keybind = ctrl+shift+enter=new_window
+
+# ctrl+shift+h: previous tab
+keybind = ctrl+shift+h=previous_tab
+
+# ctrl+shift+l: next tab
+keybind = ctrl+shift+l=next_tab
+
+# Tab appearance (if supported)
+# Note: Some tab styling may differ in ghostty
