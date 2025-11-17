@@ -1,4 +1,4 @@
-local opts = {
+local configuration = {
     signs                        = {
         add          = { text = '│' },
         change       = { text = '│' },
@@ -79,7 +79,7 @@ local opts = {
     end
 }
 
-require('gitsigns').setup(opts)
+require('gitsigns').setup(configuration)
 
 -- Global keymaps for navigating between changed files
 local function get_changed_files()
