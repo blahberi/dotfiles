@@ -5,10 +5,6 @@ return {
 
         local api = require("Comment.api")
 
-        -- Map Ctrl+/ to toggle comment with smart detection
-        -- Try both <C-_> (terminal) and <C-/> (GUI)
-
-        -- Normal mode - toggle current line
         vim.keymap.set("n", "<C-_>", function()
             api.toggle.linewise.current()
         end, { desc = "Toggle comment" })
@@ -17,7 +13,6 @@ return {
             api.toggle.linewise.current()
         end, { desc = "Toggle comment" })
 
-        -- Visual mode - toggle selection with smart detection
         vim.keymap.set("v", "<C-_>", function()
             local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
             vim.api.nvim_feedkeys(esc, "nx", false)
