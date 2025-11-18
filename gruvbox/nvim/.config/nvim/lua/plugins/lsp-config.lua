@@ -19,5 +19,6 @@ return {
 		config = function()
 			require("plugins.config.lsp")
 		end,
+        lazy = false,
 	},
 }

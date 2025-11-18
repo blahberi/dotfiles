@@ -1,2 +1,2 @@
-require "plugins.config.lsp.config"
-require "plugins.config.lsp.omnisharp"
+require("plugins.config.lsp.config")
+require("plugins.config.lsp.omnisharp")
