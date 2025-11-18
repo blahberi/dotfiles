@@ -1,35 +1,16 @@
-local function get_servers()
-    require("lspconfig")
-    local util = require("lspconfig.util")
-    return {
-        lua_ls = {},
-        clangd = {},
-        pyright = {},
-        marksman = {},
-        ltex = {},
-        cmake = {},
-        gopls = {
-            cmd = { "gopls" },
-            filetypes = { "go", "gomod", "gowork", "gotmpl" },
-            root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-        },
-        omnisharp = {},
-    }
-end
-
 if vim.g.vscode then
 	return
 end
 
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local languages = require("plugins.config.lsp.languages")
 
 require("mason-lspconfig").setup({
-	ensure_installed = vim.tbl_keys(get_servers()),
+	ensure_installed = vim.tbl_keys(languages.servers()),
 	automatic_insallation = false,
 	handlers = {
 		function(server_name)
-			local config = get_servers()[server_name] or {}
+			local config = languages.servers()[server_name] or {}
 			config.capabilities = capabilities
 			require("lspconfig")[server_name].setup(config)
 		end,
