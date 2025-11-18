@@ -15,7 +15,6 @@ vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {})
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-vim.keymap.set("n", "<leader>vf", vim.lsp.buf.format, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, {})
 
