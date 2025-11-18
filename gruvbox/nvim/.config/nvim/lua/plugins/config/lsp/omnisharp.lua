@@ -7,17 +7,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
         vim.keymap.set("n", "gd", omnisharp_extended.lsp_definition, { buffer = true, noremap = true, silent = true })
         vim.keymap.set("n", "go", omnisharp_extended.lsp_type_definition, { buffer = true, noremap = true, silent = true })
-        vim.keymap.set("n", "gi", function()
-            builtin.lsp_implementations({
-                fname_width = 100,
-                trim_text = true,
-            })
-        end, { buffer = true, noremap = true, silent = true })
-        vim.keymap.set("n", "gr", function()
-            builtin.lsp_references({
-                fname_width = 100,
-                trim_text = true,
-            })
-        end, { buffer = true, noremap = true, silent = true })
+        vim.keymap.set("n", "gi", builtin.lsp_implementations, { buffer = true, noremap = true, silent = true })
+        vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = true, noremap = true, silent = true })
     end,
 })

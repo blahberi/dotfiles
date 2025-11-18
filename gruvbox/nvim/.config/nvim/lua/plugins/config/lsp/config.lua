@@ -9,18 +9,8 @@ pcall(vim.keymap.del, "n", "grt")
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "gi", function()
-	builtin.lsp_implementations({
-		fname_width = 100,
-		trim_text = true,
-	})
-end, { noremap = true })
-vim.keymap.set("n", "gr", function()
-	builtin.lsp_references({
-		fname_width = 100,
-		trim_text = true,
-	})
-end, { noremap = true, silent = true })
+vim.keymap.set("n", "gi", builtin.lsp_implementations, { noremap = true })
+vim.keymap.set("n", "gr", builtin.lsp_references, { noremap = true, silent = true })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 vim.keymap.set("n", "go", vim.lsp.buf.type_definition, {})
 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, {})
