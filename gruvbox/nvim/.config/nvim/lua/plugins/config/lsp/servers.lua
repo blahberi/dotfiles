@@ -3,7 +3,7 @@ if vim.g.vscode then
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local languages = require("plugins.config.lsp.languages")
+local languages = require("plugins.config.languages")
 
 require("mason-lspconfig").setup({
 	ensure_installed = vim.tbl_keys(languages.servers()),
