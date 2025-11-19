@@ -12,10 +12,12 @@ return {
 			require("plugins.config.filetree")
 		end,
 	},
-    {
-        "s1n7ax/nvim-window-picker",
-        config = function()
-            require("plugins.config.window-picker")
-        end,
-    }
+	{
+		"s1n7ax/nvim-window-picker",
+		config = function()
+			require("window-picker").setup({
+				hint = "floating-big-letter",
+			})
+		end,
+	},
 }
